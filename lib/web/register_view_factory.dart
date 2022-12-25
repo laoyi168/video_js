@@ -38,7 +38,7 @@ class ViewFactoryWeb extends ViewFactoryPlugin {
           // ..style.width = '100%'
           // ..style.height = 'auto'
             ..setAttribute('playsinline', true)
-            ..className = 'video-js $theme'
+            ..className = 'video-js  $theme vjs-big-play-centered'
             ..width = width.toInt()
             ..height = height.toInt(),
           html.ScriptElement()
