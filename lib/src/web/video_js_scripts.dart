@@ -39,7 +39,7 @@ class VideoJsScripts {
 
   String dispose(String playerId) => """
     var player = videojs.getPlayer('$playerId');
-    if(!player.isDisposed()){ player.dispose();}""";
+    if(player&&player!=undefined&&!player.isDisposed()){ player.dispose();}""";
 
   // String isDispose(String playerId) => """
   //   '$playerId'.isDisposed();""";
@@ -62,119 +62,137 @@ class VideoJsScripts {
   //volume 0 until 1
   String getVolume(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var volume = player.volume();
     callBackToDartSide('$playerId', 'getVolume' , String(volume));
-    });""";
+    });}""";
 
   //volume 0 until 1
   String setVolume(String playerId, String volume) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.volume(parseFloat('$volume')); 
-    });""";
+    });}""";
 
   String toggleMute(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.muted(player.muted() ? false : true);
-    });""";
+    });}""";
 
   String isMute(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var status = player.muted();
     callBackToDartSide('$playerId', 'isMute' , status);
-    });""";
+    });}""";
 
   // set, tell the player it's in fullscreen
   String toggleFullScreenMode(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.isFullscreen(player.isFullscreen() ? false : true);
-    });""";
+    });}""";
 
   String isFullScreen(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     callBackToDartSide('$playerId', 'isFull' , String(player.isFullscreen()));
-    });""";
+    });}""";
 
   String requestFullscreen(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.requestFullscreen();
-    });""";
+    });}""";
 
   String exitFullscreen(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.exitFullscreen();
-    });""";
+    });}""";
 
   String play(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.play();
-    });""";
+    });}""";
 
   String pause(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.pause();
-    });""";
+    });}""";
 
   String isPause(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var status = player.paused();
     callBackToDartSide('$playerId', 'isPaused' , status);
-    });""";
+    });}""";
 
   String getCurrentTime(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var currentTime = player.currentTime();
     callBackToDartSide('$playerId', 'getCurrent' , currentTime);
-    });""";
+    });}""";
 
   String setCurrentTime(String playerId, String timeInSecond) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.currentTime($timeInSecond);
-    });""";
+    });}""";
 
   String duration(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var lengthOfVideo = player.duration();
     callBackToDartSide('$playerId', 'getDuration' , lengthOfVideo);
-    });""";
+    });}""";
 
   String remainingTime(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var lengthOfVideo = player.remainingTime();
     callBackToDartSide('$playerId', 'getRemaining' , lengthOfVideo);
-    });""";
+    });}""";
 
   String bufferedPercent(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var howMuchIsDownloaded = player.bufferedPercent();
     callBackToDartSide('$playerId', 'getBuffered' , howMuchIsDownloaded);
-    });""";
+    });}""";
 
   String setPoster(String playerId, String posterImage) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     player.poster('$posterImage');
-    });""";
+    });}""";
 
   String getPoster(String playerId) => """
     var player = videojs.getPlayer('$playerId');
+    if(player&&player!=undefined){
     player.ready(function() {
     var value = player.poster();
     callBackToDartSide('$playerId', 'getPoster', value);
-    });""";
+    });}""";
 }
