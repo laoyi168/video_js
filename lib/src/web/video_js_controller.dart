@@ -286,6 +286,18 @@ class VideoJsController {
     html.querySelector('body')!.children.add(scriptElement);
     VideoJsResults().listenToValueFromJs(playerId, 'onReady', onReady);
   }
+  
+  onPlayerEnd(Function(String) onReady) {
+    final html.Element scriptElement = html.ScriptElement()
+      ..id = "onPlayerEnd"
+      ..innerHtml = VideoJsScripts().onEnd(playerId);
+    html.Element? ele = html.querySelector("#onPlayerEnd");
+    if (html.querySelector("#onPlayerEnd") != null) {
+      ele!.remove();
+    }
+    html.querySelector('body')!.children.add(scriptElement);
+    VideoJsResults().listenToValueFromJs(playerId, 'onEnd', onReady);
+  }
 
   /// This method is available on all Video.js players and components.
   /// It is the only supported method of removing a Video.js player from both the DOM and memory.
